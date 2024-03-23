@@ -13,15 +13,15 @@ class NewsListView(APIView):
 
         if New.objects.all().exists():
 
-            new = New.objects.all()
+            news = New.objects.all()
 
-            serialiazer = NewSerializer(new, many=True)
+            serialiazer = NewSerializer(news, many=True)
 
-            return Response({'new': serialiazer.data},
+            return Response({'news': serialiazer.data},
                             status=status.HTTP_200_OK)
 
         else:
-            return Response({'error': 'No se encontraron posts'},
+            return Response({'error': 'No news found.'},
                             status=status.HTTP_404_NOT_FOUND)
 
 
@@ -39,5 +39,5 @@ class NewDetailView(APIView):
                             status=status.HTTP_200_OK)
 
         else:
-            return Response({'error': 'No existe la noticia'},
+            return Response({'error': 'New with that slug does not exist.'},
                             status=status.HTTP_404_NOT_FOUND)
