@@ -6,6 +6,7 @@ from django.utils import timezone
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 
 from .models import Currency, UpdateLog
 from .serializers import CurrencySerializer
@@ -16,6 +17,8 @@ UPDATE_INTERVAL = 1  # hora
 
 
 class ConvertCurrencyView(APIView):
+    permission_classes = (AllowAny,)
+
     def get(self, request, from_currency, to_currency, amount):
         try:
             self.update_rates_if_necessary()
@@ -61,6 +64,8 @@ class ConvertCurrencyView(APIView):
 
 
 class CurrencyListView(generics.ListAPIView):
+    permission_classes = (AllowAny,)
+
     """ Vista para listar todas las monedas """
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
