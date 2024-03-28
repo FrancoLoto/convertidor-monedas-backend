@@ -172,3 +172,7 @@ DJOSER = {
 }
 
 AUTH_USER_MODEL = 'users.UserAccount'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")

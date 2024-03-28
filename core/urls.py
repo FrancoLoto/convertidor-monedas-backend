@@ -7,5 +7,5 @@ urlpatterns = [
     path('api/news/', include('news.urls')),
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
-    path('api/users/', include('users.urls')),
+    path('api/auth/', include('users.urls')),
 ]
