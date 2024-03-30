@@ -16,6 +16,7 @@ EXCHANGE_RATE_API_URL = 'https://api.exchangerate-api.com/v4/latest/USD'
 UPDATE_INTERVAL = 1  # hora
 
 
+# View to convert a currency
 class ConvertCurrencyView(APIView):
     permission_classes = (AllowAny,)
 
@@ -63,9 +64,9 @@ class ConvertCurrencyView(APIView):
         return Response({'converted_amount': converted_amount})
 
 
+# View to list all the currencies
 class CurrencyListView(generics.ListAPIView):
     permission_classes = (AllowAny,)
 
-    """ Vista para listar todas las monedas """
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer

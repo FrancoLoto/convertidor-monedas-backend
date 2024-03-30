@@ -8,6 +8,7 @@ env = environ.Env()
 environ.Env.read_env()
 
 
+# Cloudinary settings
 cloudinary.config(
     cloud_name=os.environ.get("CLOUD_NAME"),
     api_key=os.environ.get("CLOUD_API_KEY"),
@@ -143,8 +144,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Cors headers settings
 CORS_ORIGINS_WHITELIST = [
     'http://localhost:3000',
+    'http://127.0.0.1:3000'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -152,7 +155,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 
+
+# Rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication'
@@ -162,6 +168,7 @@ REST_FRAMEWORK = {
     ]
 }
 
+# Djoser settings
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
@@ -176,3 +183,6 @@ AUTH_USER_MODEL = 'users.UserAccount'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
+
+DOMAIN = os.environ.get("DOMAIN")
+SITE_NAME = "ZonaDefi"
